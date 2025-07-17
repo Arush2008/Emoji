@@ -163,7 +163,6 @@ class PersonalityQuiz {
 
     initializeEventListeners() {
         document.getElementById('start-quiz').addEventListener('click', () => this.startQuiz());
-        document.getElementById('next-btn').addEventListener('click', () => this.nextQuestion());
         document.getElementById('prev-btn').addEventListener('click', () => this.previousQuestion());
         document.getElementById('restart-quiz').addEventListener('click', () => this.restartQuiz());
     }
@@ -197,6 +196,7 @@ class PersonalityQuiz {
             const optionElement = document.createElement('div');
             optionElement.className = 'option';
             optionElement.textContent = option.text;
+            optionElement.style.pointerEvents = 'auto'; // Re-enable clicking
             optionElement.addEventListener('click', () => this.selectOption(index));
             
             // Restore previous selection if any
@@ -211,34 +211,40 @@ class PersonalityQuiz {
     }
 
     selectOption(optionIndex) {
-        // Remove previous selection
+        // Disable all options to prevent multiple clicks
         document.querySelectorAll('.option').forEach(option => {
+            option.style.pointerEvents = 'none';
             option.classList.remove('selected');
         });
         
         // Add selection to clicked option
-        document.querySelectorAll('.option')[optionIndex].classList.add('selected');
+        const selectedOption = document.querySelectorAll('.option')[optionIndex];
+        selectedOption.classList.add('selected');
         
         // Store answer
         this.answers[this.currentQuestion] = optionIndex;
+        
+        // Auto-advance to next question after a short delay
+        setTimeout(() => {
+            if (this.currentQuestion < this.questions.length - 1) {
+                this.currentQuestion++;
+                this.displayQuestion();
+            } else {
+                // Last question - show results
+                this.calculateResults();
+            }
+        }, 800); // 800ms delay to show the selection
         
         this.updateNavigationButtons();
     }
 
     updateNavigationButtons() {
         const prevBtn = document.getElementById('prev-btn');
-        const nextBtn = document.getElementById('next-btn');
         
         prevBtn.disabled = this.currentQuestion === 0;
         
-        const hasAnswer = this.answers[this.currentQuestion] !== undefined;
-        nextBtn.disabled = !hasAnswer;
-        
-        if (this.currentQuestion === this.questions.length - 1 && hasAnswer) {
-            nextBtn.textContent = 'See Results';
-        } else {
-            nextBtn.textContent = 'Next';
-        }
+        // Hide next button since we auto-advance now
+        document.getElementById('next-btn').style.display = 'none';
     }
 
     nextQuestion() {
