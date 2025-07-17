@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personality Quiz - Discover Your True Self</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌟 Personality Quiz 🌟</h1>
+            <p>Discover your unique personality through 8 thoughtful questions</p>
+        </header>
+
+        <div id="welcome-screen" class="screen active">
+            <div class="welcome-content">
+                <h2>Ready to discover your personality?</h2>
+                <p>This quiz will help you understand your personality traits through 8 carefully crafted questions. There are no right or wrong answers - just be honest!</p>
+                <button id="start-quiz" class="btn btn-primary">Start Quiz</button>
+            </div>
+        </div>
+
+        <div id="quiz-screen" class="screen">
+            <div class="progress-bar">
+                <div id="progress" class="progress-fill"></div>
+            </div>
+            <div class="question-counter">
+                Question <span id="current-question">1</span> of 8
+            </div>
+            
+            <div id="question-container">
+                <h2 id="question-text"></h2>
+                <div id="options-container"></div>
+            </div>
+            
+            <div class="navigation">
+                <button id="prev-btn" class="btn btn-secondary" disabled>Previous</button>
+                <button id="next-btn" class="btn btn-primary" disabled>Next</button>
+            </div>
+        </div>
+
+        <div id="result-screen" class="screen">
+            <div class="result-content">
+                <h2>Your Personality Result</h2>
+                <div id="personality-type">
+                    <div id="personality-icon"></div>
+                    <h3 id="personality-title"></h3>
+                    <p id="personality-description"></p>
+                </div>
+                <div id="personality-traits">
+                    <h4>Your Key Traits:</h4>
+                    <ul id="traits-list"></ul>
+                </div>
+                <div id="personality-advice">
+                    <h4>Personal Growth Tips:</h4>
+                    <p id="advice-text"></p>
+                </div>
+                <button id="restart-quiz" class="btn btn-primary">Take Quiz Again</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
