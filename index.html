@@ -22,7 +22,51 @@
             <div class="welcome-content">
                 <h2>Ready to discover your personality?</h2>
                 <p>This quiz will help you understand your personality traits through 8 carefully crafted questions. There are no right or wrong answers - just be honest!</p>
-                <button id="start-quiz" class="btn btn-primary">Start Quiz</button>
+                
+                <!-- Maze Game Section -->
+                <div class="maze-section">
+                    <h3>🧩 Warm up your mind with our Maze Challenge!</h3>
+                    <p>Test your problem-solving skills with 10 levels of increasing difficulty</p>
+                    <div class="game-controls">
+                        <button id="start-maze" class="btn btn-secondary">Play Maze Game</button>
+                        <span class="level-display">Level: <span id="current-level">1</span>/10</span>
+                    </div>
+                </div>
+                
+                <button id="start-quiz" class="btn btn-primary">Start Personality Quiz</button>
+            </div>
+        </div>
+
+        <!-- Maze Game Screen -->
+        <div id="maze-screen" class="screen">
+            <div class="maze-content">
+                <div class="maze-header">
+                    <h2>🧩 Maze Challenge</h2>
+                    <div class="maze-info">
+                        <span class="level-info">Level <span id="maze-level">1</span>/10</span>
+                        <span class="moves-counter">Moves: <span id="move-count">0</span></span>
+                        <span class="time-counter">Time: <span id="time-count">00:00</span></span>
+                    </div>
+                    <div class="maze-controls">
+                        <button id="reset-maze" class="btn btn-secondary">Reset Level</button>
+                        <button id="restart-game" class="btn btn-warning">Restart Game</button>
+                        <button id="back-to-welcome" class="btn btn-secondary">Back to Home</button>
+                    </div>
+                </div>
+                
+                <div id="maze-container">
+                    <canvas id="maze-canvas"></canvas>
+                </div>
+                
+                <div class="maze-instructions">
+                    <p>🎯 Use arrow keys or WASD to move the player (🟡) to the goal (🏆)</p>
+                    <div class="difficulty-legend">
+                        <span class="easy">🟢 Easy (1-3)</span>
+                        <span class="medium">🟡 Medium (4-6)</span>
+                        <span class="hard">🟠 Hard (7-8)</span>
+                        <span class="extreme">🔴 Extreme (9-10)</span>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -66,6 +110,36 @@
                     <div id="celebrities-grid" class="celebrity-grid"></div>
                 </div>
                 <button id="restart-quiz" class="btn btn-primary">Take Quiz Again</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Level Complete Popup -->
+    <div id="level-popup-overlay" class="level-popup-overlay">
+        <div id="level-popup" class="level-popup">
+            <h3 id="popup-title">🎉 Level Complete!</h3>
+            <div class="completion-stats">
+                <div class="stat-row">
+                    <span class="stat-label">⏱️ Time:</span>
+                    <span class="stat-value" id="popup-time">00:00</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">👣 Moves:</span>
+                    <span class="stat-value" id="popup-moves">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">🎯 Level:</span>
+                    <span class="stat-value" id="popup-level">1</span>
+                </div>
+                <div class="stat-row" id="popup-difficulty-row">
+                    <span class="stat-label">💪 Difficulty:</span>
+                    <span class="stat-value" id="popup-difficulty">Easy</span>
+                </div>
+            </div>
+            <div class="popup-buttons">
+                <button id="next-level-btn" class="popup-btn primary">Next Level</button>
+                <button id="retry-level-btn" class="popup-btn secondary">Retry Level</button>
+                <button id="home-btn" class="popup-btn home">Home</button>
             </div>
         </div>
     </div>

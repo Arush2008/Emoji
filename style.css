@@ -31,13 +31,8 @@ body.dark-mode .screen {
     color: #e2e8f0;
 }
 
-body.dark-mode .welcome-content h2,
 body.dark-mode .result-content h2 {
     color: #e2e8f0;
-}
-
-body.dark-mode .welcome-content p {
-    color: #a0aec0;
 }
 
 body.dark-mode .question-counter {
@@ -193,21 +188,40 @@ header p {
 
 .welcome-content {
     text-align: center;
-    max-width: 600px;
+    max-width: 700px;
     margin: 0 auto;
+    padding: 40px 20px;
 }
 
 .welcome-content h2 {
-    font-size: 2rem;
+    font-size: 2.5rem;
     margin-bottom: 20px;
+    color: #2d3748;
+    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
+}
+
+.welcome-content > p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 40px;
     color: #4a5568;
 }
 
-.welcome-content p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 30px;
-    color: #718096;
+/* Dark mode overrides for welcome content */
+body.dark-mode .welcome-content h2 {
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .welcome-content > p {
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.welcome-content #start-quiz {
+    margin-top: 30px;
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    font-weight: 600;
 }
 
 .btn {
@@ -240,6 +254,18 @@ header p {
 .btn-secondary:hover {
     background: #cbd5e0;
     transform: translateY(-1px);
+}
+
+.btn-warning {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+}
+
+.btn-warning:hover {
+    background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
 }
 
 .btn:disabled {
@@ -544,5 +570,408 @@ header p {
     .btn {
         width: 100%;
         padding: 12px 25px;
+    }
+}
+
+/* Maze Game Styles */
+.maze-section {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 30px;
+    margin: 30px auto;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    max-width: 600px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.maze-section h3 {
+    color: #2d3748;
+    margin-bottom: 15px;
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.maze-section p {
+    color: #4a5568;
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+/* Dark mode overrides for maze section */
+body.dark-mode .maze-section {
+    background: rgba(45, 55, 72, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .maze-section h3 {
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .maze-section p {
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.game-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.level-display {
+    color: #2d3748;
+    font-weight: bold;
+    font-size: 1.1rem;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.6));
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: 1px solid rgba(45, 55, 72, 0.2);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode override for level display */
+body.dark-mode .level-display {
+    color: #fff;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.15));
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Maze Screen Styles */
+#maze-screen {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.maze-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.maze-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.maze-header h2 {
+    color: #fff;
+    margin-bottom: 20px;
+    font-size: 2.2rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.maze-info {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.maze-info span {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 25px;
+    font-weight: bold;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.maze-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+#maze-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+#maze-canvas {
+    border: 3px solid #fff;
+    border-radius: 15px;
+    background: #000;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    width: 500px;
+    height: 500px;
+}
+
+.maze-instructions {
+    text-align: center;
+    color: #fff;
+    margin-top: 20px;
+}
+
+.maze-instructions p {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.difficulty-legend {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.difficulty-legend span {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px 12px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    backdrop-filter: blur(5px);
+}
+
+.easy { border-left: 4px solid #10b981; }
+.medium { border-left: 4px solid #f59e0b; }
+.hard { border-left: 4px solid #f97316; }
+.extreme { border-left: 4px solid #ef4444; }
+
+/* Level Complete Popup */
+.level-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.level-popup-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.level-popup {
+    background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 450px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    transform: translateY(-50px);
+    transition: transform 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.level-popup-overlay.show .level-popup {
+    transform: translateY(0);
+}
+
+.level-popup h3 {
+    color: #2d3748;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.level-popup .completion-stats {
+    background: linear-gradient(135deg, #e2e8f0 0%, #f7fafc 100%);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 25px 0;
+    border-left: 4px solid #3182ce;
+}
+
+.level-popup .stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.level-popup .stat-row:last-child {
+    margin-bottom: 0;
+}
+
+.level-popup .stat-label {
+    color: #4a5568;
+    font-weight: 600;
+}
+
+.level-popup .stat-value {
+    color: #2d3748;
+    font-weight: bold;
+}
+
+.level-popup .popup-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.level-popup .popup-btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+}
+
+.level-popup .popup-btn.primary {
+    background: linear-gradient(135deg, #3182ce 0%, #2c5282 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(49, 130, 206, 0.3);
+}
+
+.level-popup .popup-btn.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(49, 130, 206, 0.4);
+}
+
+.level-popup .popup-btn.secondary {
+    background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e0 100%);
+    color: #4a5568;
+    border: 1px solid #cbd5e0;
+}
+
+.level-popup .popup-btn.secondary:hover {
+    background: linear-gradient(135deg, #cbd5e0 0%, #a0aec0 100%);
+    transform: translateY(-1px);
+}
+
+.level-popup .popup-btn.home {
+    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(72, 187, 120, 0.3);
+}
+
+.level-popup .popup-btn.home:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(72, 187, 120, 0.4);
+}
+
+/* Game completion styles */
+.level-popup.game-complete {
+    background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+    border: 3px solid #f59e0b;
+}
+
+.level-popup.game-complete h3 {
+    color: #92400e;
+}
+
+.level-popup.game-complete .completion-stats {
+    background: rgba(255, 255, 255, 0.8);
+    border-left-color: #f59e0b;
+}
+
+/* Dark mode maze styles */
+body.dark-mode #maze-screen {
+    background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+}
+
+/* Responsive maze styles */
+@media (max-width: 768px) {
+    .maze-section {
+        padding: 25px 20px;
+        margin: 20px auto;
+        max-width: 90%;
+    }
+    
+    .maze-section h3 {
+        font-size: 1.4rem;
+    }
+    
+    .game-controls {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .maze-info {
+        gap: 15px;
+    }
+    
+    .maze-info span {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+    
+    .maze-controls {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .difficulty-legend {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    #maze-canvas {
+        width: 350px !important;
+        height: 350px !important;
+    }
+    
+    .level-popup {
+        padding: 30px 25px;
+        max-width: 90%;
+    }
+    
+    .level-popup h3 {
+        font-size: 1.6rem;
+    }
+    
+    .level-popup .popup-buttons {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .level-popup .popup-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .maze-section {
+        padding: 20px 15px;
+    }
+    
+    .maze-section h3 {
+        font-size: 1.2rem;
+    }
+    
+    .maze-section p {
+        font-size: 1rem;
+    }
+    
+    #maze-canvas {
+        width: 280px !important;
+        height: 280px !important;
+    }
+    
+    .maze-header h2 {
+        font-size: 1.8rem;
+    }
+    
+    .maze-info {
+        gap: 10px;
+    }
+    
+    .maze-info span {
+        font-size: 0.8rem;
+        padding: 6px 10px;
     }
 }

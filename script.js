@@ -1,3 +1,579 @@
+// Maze Game Class
+class MazeGame {
+    constructor() {
+        this.canvas = null;
+        this.ctx = null;
+        this.currentLevel = this.loadSavedLevel(); // Load saved level
+        this.totalLevels = 10;
+        this.fixedCanvasSize = 500; // Fixed canvas size
+        this.maze = [];
+        this.playerPos = { x: 0, y: 0 };
+        this.goalPos = { x: 0, y: 0 };
+        this.moveCount = 0;
+        this.startTime = null;
+        this.gameActive = false;
+        this.mazeWidth = 0;
+        this.mazeHeight = 0;
+        this.timerInterval = null; // Add timer interval tracking
+        
+        // Level configurations (width x height) - progressively harder
+        this.levelConfigs = [
+            { width: 11, height: 11, name: "Beginner's Luck", difficulty: "Easy" },      // Level 1
+            { width: 15, height: 15, name: "Getting Started", difficulty: "Easy" },      // Level 2
+            { width: 19, height: 19, name: "Warming Up", difficulty: "Easy" },           // Level 3
+            { width: 23, height: 23, name: "Finding Your Way", difficulty: "Medium" },   // Level 4
+            { width: 27, height: 27, name: "Mind Bender", difficulty: "Medium" },        // Level 5
+            { width: 31, height: 31, name: "Challenge Accepted", difficulty: "Medium" }, // Level 6
+            { width: 35, height: 35, name: "Expert Territory", difficulty: "Hard" },     // Level 7
+            { width: 39, height: 39, name: "Master's Domain", difficulty: "Hard" },      // Level 8
+            { width: 43, height: 43, name: "Nightmare Mode", difficulty: "Extreme" },    // Level 9
+            { width: 47, height: 47, name: "Impossible Dream", difficulty: "Extreme" }   // Level 10
+        ];
+        
+        this.initializeEventListeners();
+    }
+    
+    initializeEventListeners() {
+        // Check if elements exist before adding event listeners
+        const startMazeBtn = document.getElementById('start-maze');
+        const resetMazeBtn = document.getElementById('reset-maze');
+        const backToWelcomeBtn = document.getElementById('back-to-welcome');
+        const restartGameBtn = document.getElementById('restart-game');
+        const nextLevelBtn = document.getElementById('next-level-btn');
+        const retryLevelBtn = document.getElementById('retry-level-btn');
+        const homeBtn = document.getElementById('home-btn');
+        
+        if (startMazeBtn) startMazeBtn.addEventListener('click', () => this.startMazeGame());
+        if (resetMazeBtn) resetMazeBtn.addEventListener('click', () => this.resetCurrentLevel());
+        if (backToWelcomeBtn) backToWelcomeBtn.addEventListener('click', () => this.backToWelcome());
+        if (restartGameBtn) restartGameBtn.addEventListener('click', () => this.restartWholeGame());
+        if (nextLevelBtn) nextLevelBtn.addEventListener('click', () => this.nextLevel());
+        if (retryLevelBtn) retryLevelBtn.addEventListener('click', () => this.resetCurrentLevel());
+        if (homeBtn) homeBtn.addEventListener('click', () => this.backToWelcome());
+        
+        // Keyboard controls
+        document.addEventListener('keydown', (e) => this.handleKeyPress(e));
+    }
+    
+    startMazeGame() {
+        this.showMazeScreen();
+        if (this.initializeCanvas()) {
+            this.generateMaze();
+            this.startTimer();
+        }
+    }
+    
+    showMazeScreen() {
+        document.querySelectorAll('.screen').forEach(screen => {
+            screen.classList.remove('active');
+        });
+        document.getElementById('maze-screen').classList.add('active');
+    }
+    
+    initializeCanvas() {
+        this.canvas = document.getElementById('maze-canvas');
+        if (!this.canvas) {
+            console.error('Maze canvas not found');
+            return false;
+        }
+        
+        this.ctx = this.canvas.getContext('2d');
+        if (!this.ctx) {
+            console.error('Could not get canvas context');
+            return false;
+        }
+        
+        const config = this.levelConfigs[this.currentLevel - 1];
+        this.mazeWidth = config.width;
+        this.mazeHeight = config.height;
+        
+        // Fixed canvas size, calculate cell size based on maze dimensions
+        this.canvas.width = this.fixedCanvasSize;
+        this.canvas.height = this.fixedCanvasSize;
+        
+        // Calculate cell size to fit the maze in the fixed canvas
+        this.cellSize = Math.floor(this.fixedCanvasSize / Math.max(this.mazeWidth, this.mazeHeight));
+        
+        this.updateUI();
+        return true;
+    }
+    
+    generateMaze() {
+        // Initialize maze with walls
+        this.maze = Array(this.mazeHeight).fill().map(() => Array(this.mazeWidth).fill(1));
+        
+        // Use recursive backtracking algorithm to generate maze
+        this.carveMaze(1, 1);
+        
+        // Set player starting position
+        this.playerPos = { x: 1, y: 1 };
+        
+        // Set goal position (bottom right area)
+        this.goalPos = { 
+            x: this.mazeWidth - 2, 
+            y: this.mazeHeight - 2 
+        };
+        
+        // Ensure goal is accessible
+        this.maze[this.goalPos.y][this.goalPos.x] = 0;
+        
+        this.moveCount = 0;
+        this.gameActive = true;
+        this.drawMaze();
+    }
+    
+    carveMaze(x, y) {
+        this.maze[y][x] = 0; // Mark as path
+        
+        // Define directions: up, right, down, left
+        const directions = [
+            [0, -2], [2, 0], [0, 2], [-2, 0]
+        ];
+        
+        // Shuffle directions for randomness
+        this.shuffleArray(directions);
+        
+        for (let [dx, dy] of directions) {
+            const newX = x + dx;
+            const newY = y + dy;
+            
+            // Check if the new position is within bounds and is a wall
+            if (newX > 0 && newX < this.mazeWidth - 1 && 
+                newY > 0 && newY < this.mazeHeight - 1 && 
+                this.maze[newY][newX] === 1) {
+                
+                // Carve the wall between current and new position
+                this.maze[y + dy/2][x + dx/2] = 0;
+                this.carveMaze(newX, newY);
+            }
+        }
+    }
+    
+    shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+    
+    drawMaze() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        
+        // Calculate offset to center the maze in the fixed canvas
+        const mazePixelWidth = this.mazeWidth * this.cellSize;
+        const mazePixelHeight = this.mazeHeight * this.cellSize;
+        const offsetX = (this.fixedCanvasSize - mazePixelWidth) / 2;
+        const offsetY = (this.fixedCanvasSize - mazePixelHeight) / 2;
+        
+        // Draw maze cells
+        for (let y = 0; y < this.mazeHeight; y++) {
+            for (let x = 0; x < this.mazeWidth; x++) {
+                const cellX = offsetX + (x * this.cellSize);
+                const cellY = offsetY + (y * this.cellSize);
+                
+                if (this.maze[y][x] === 1) {
+                    // Wall
+                    this.ctx.fillStyle = this.getDifficultyColor();
+                    this.ctx.fillRect(cellX, cellY, this.cellSize, this.cellSize);
+                } else {
+                    // Path
+                    this.ctx.fillStyle = '#f8f9fa';
+                    this.ctx.fillRect(cellX, cellY, this.cellSize, this.cellSize);
+                }
+                
+                // Draw grid lines for better visibility on smaller cells
+                if (this.cellSize > 8) {
+                    this.ctx.strokeStyle = '#dee2e6';
+                    this.ctx.lineWidth = 1;
+                    this.ctx.strokeRect(cellX, cellY, this.cellSize, this.cellSize);
+                }
+            }
+        }
+        
+        // Draw goal
+        this.drawEmoji(this.goalPos.x, this.goalPos.y, '🏆', offsetX, offsetY);
+        
+        // Draw player
+        this.drawEmoji(this.playerPos.x, this.playerPos.y, '🟡', offsetX, offsetY);
+    }
+    
+    drawEmoji(x, y, emoji, offsetX = 0, offsetY = 0) {
+        const cellX = offsetX + (x * this.cellSize);
+        const cellY = offsetY + (y * this.cellSize);
+        
+        this.ctx.font = `${Math.max(this.cellSize * 0.7, 8)}px Arial`;
+        this.ctx.textAlign = 'center';
+        this.ctx.textBaseline = 'middle';
+        this.ctx.fillStyle = '#000';
+        this.ctx.fillText(
+            emoji, 
+            cellX + this.cellSize / 2, 
+            cellY + this.cellSize / 2
+        );
+    }
+    
+    getDifficultyColor() {
+        if (this.currentLevel <= 3) return '#374151'; // Easy - Gray
+        if (this.currentLevel <= 6) return '#92400e'; // Medium - Brown
+        if (this.currentLevel <= 8) return '#dc2626'; // Hard - Red
+        return '#7c2d12'; // Extreme - Dark red
+    }
+    
+    handleKeyPress(e) {
+        if (!this.gameActive) return;
+        
+        let newX = this.playerPos.x;
+        let newY = this.playerPos.y;
+        
+        switch(e.key.toLowerCase()) {
+            case 'arrowup':
+            case 'w':
+                newY--;
+                break;
+            case 'arrowdown':
+            case 's':
+                newY++;
+                break;
+            case 'arrowleft':
+            case 'a':
+                newX--;
+                break;
+            case 'arrowright':
+            case 'd':
+                newX++;
+                break;
+            default:
+                return;
+        }
+        
+        e.preventDefault();
+        
+        // Check if move is valid
+        if (this.isValidMove(newX, newY)) {
+            this.playerPos.x = newX;
+            this.playerPos.y = newY;
+            this.moveCount++;
+            this.updateMoveCounter();
+            this.drawMaze();
+            
+            // Check if player reached goal
+            if (newX === this.goalPos.x && newY === this.goalPos.y) {
+                this.levelCompleted();
+            }
+        }
+    }
+    
+    isValidMove(x, y) {
+        return x >= 0 && x < this.mazeWidth && 
+               y >= 0 && y < this.mazeHeight && 
+               this.maze[y][x] === 0;
+    }
+    
+    levelCompleted() {
+        this.gameActive = false;
+        this.clearTimer(); // Stop the timer
+        const timeTaken = this.getElapsedTime();
+        const config = this.levelConfigs[this.currentLevel - 1];
+        
+        // Show winning animation
+        this.showWinningAnimation();
+        
+        // Show popup after animation
+        setTimeout(() => {
+            this.showLevelPopup(timeTaken, config.difficulty);
+        }, 2000);
+    }
+    
+    showLevelPopup(timeTaken, difficulty) {
+        const popup = document.getElementById('level-popup-overlay');
+        const levelPopup = document.getElementById('level-popup');
+        
+        if (!popup || !levelPopup) return; // Safety check
+        
+        // Update popup content safely
+        const timeElement = document.getElementById('popup-time');
+        const movesElement = document.getElementById('popup-moves');
+        const levelElement = document.getElementById('popup-level');
+        const difficultyElement = document.getElementById('popup-difficulty');
+        const titleElement = document.getElementById('popup-title');
+        const nextLevelBtn = document.getElementById('next-level-btn');
+        
+        if (timeElement) timeElement.textContent = timeTaken;
+        if (movesElement) movesElement.textContent = this.moveCount;
+        if (levelElement) levelElement.textContent = this.currentLevel;
+        if (difficultyElement) difficultyElement.textContent = difficulty;
+        
+        // Handle last level
+        if (this.currentLevel >= this.totalLevels) {
+            if (titleElement) titleElement.textContent = '🏆 Game Complete!';
+            levelPopup.classList.add('game-complete');
+            if (nextLevelBtn) nextLevelBtn.style.display = 'none';
+            
+            // Show final game completion animation
+            this.showGameCompletionAnimation();
+        } else {
+            if (titleElement) titleElement.textContent = '🎉 Level Complete!';
+            levelPopup.classList.remove('game-complete');
+            if (nextLevelBtn) nextLevelBtn.style.display = 'inline-block';
+        }
+        
+        // Show popup with animation
+        popup.classList.add('show');
+    }
+    
+    hidePopup() {
+        const popup = document.getElementById('level-popup-overlay');
+        popup.classList.remove('show');
+    }
+    
+    nextLevel() {
+        this.hidePopup();
+        if (this.currentLevel < this.totalLevels) {
+            this.currentLevel++;
+            this.saveCurrentLevel(); // Save progress
+            this.initializeCanvas(); // Reinitialize canvas with new dimensions
+            this.generateMaze();
+            this.startTimer();
+        }
+    }
+    
+    resetCurrentLevel() {
+        this.hidePopup();
+        this.initializeCanvas(); // Reinitialize canvas
+        this.generateMaze();
+        this.startTimer();
+    }
+    
+    backToWelcome() {
+        this.hidePopup();
+        this.gameActive = false;
+        this.clearTimer(); // Clear timer when going back to welcome
+        // Don't reset currentLevel - keep progress
+        document.querySelectorAll('.screen').forEach(screen => {
+            screen.classList.remove('active');
+        });
+        document.getElementById('welcome-screen').classList.add('active');
+        document.getElementById('current-level').textContent = this.currentLevel;
+    }
+    
+    startTimer() {
+        this.startTime = Date.now();
+        this.clearTimer(); // Clear any existing timer
+        this.startTimerInterval();
+    }
+    
+    startTimerInterval() {
+        this.timerInterval = setInterval(() => {
+            if (this.gameActive) {
+                const timeElement = document.getElementById('time-count');
+                if (timeElement) {
+                    timeElement.textContent = this.getElapsedTime();
+                }
+            } else {
+                this.clearTimer();
+            }
+        }, 1000);
+    }
+    
+    clearTimer() {
+        if (this.timerInterval) {
+            clearInterval(this.timerInterval);
+            this.timerInterval = null;
+        }
+    }
+    
+    getElapsedTime() {
+        if (!this.startTime) return '00:00';
+        const elapsed = Math.floor((Date.now() - this.startTime) / 1000);
+        const minutes = Math.floor(elapsed / 60);
+        const seconds = elapsed % 60;
+        return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    }
+    
+    updateUI() {
+        const mazeLevelElement = document.getElementById('maze-level');
+        const currentLevelElement = document.getElementById('current-level');
+        
+        if (mazeLevelElement) mazeLevelElement.textContent = this.currentLevel;
+        if (currentLevelElement) currentLevelElement.textContent = this.currentLevel;
+    }
+    
+    updateMoveCounter() {
+        const moveCountElement = document.getElementById('move-count');
+        if (moveCountElement) moveCountElement.textContent = this.moveCount;
+    }
+    
+    // Level persistence methods
+    loadSavedLevel() {
+        const savedLevel = localStorage.getItem('mazeCurrentLevel');
+        return savedLevel ? parseInt(savedLevel) : 1;
+    }
+    
+    saveCurrentLevel() {
+        localStorage.setItem('mazeCurrentLevel', this.currentLevel.toString());
+    }
+    
+    clearSavedLevel() {
+        localStorage.removeItem('mazeCurrentLevel');
+    }
+    
+    restartWholeGame() {
+        this.hidePopup();
+        this.gameActive = false;
+        this.clearTimer();
+        this.currentLevel = 1;
+        this.clearSavedLevel();
+        this.initializeCanvas();
+        this.generateMaze();
+        this.startTimer();
+    }
+    
+    showWinningAnimation() {
+        // Clear the maze and draw celebration
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        
+        // Draw dark background
+        this.ctx.fillStyle = 'rgba(0, 0, 0, 0.8)';
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        
+        // Draw big trophy in the center
+        const centerX = this.canvas.width / 2;
+        const centerY = this.canvas.height / 2;
+        
+        // Animate trophy growing
+        let scale = 0;
+        const animateInterval = setInterval(() => {
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            
+            // Dark background
+            this.ctx.fillStyle = 'rgba(0, 0, 0, 0.8)';
+            this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+            
+            // Trophy with growing scale
+            this.ctx.font = `${80 * scale}px Arial`;
+            this.ctx.textAlign = 'center';
+            this.ctx.textBaseline = 'middle';
+            this.ctx.fillStyle = '#FFD700'; // Gold color
+            this.ctx.fillText('🏆', centerX, centerY);
+            
+            // Level complete text
+            if (scale > 0.8) {
+                this.ctx.font = `${24 * scale}px Arial`;
+                this.ctx.fillStyle = '#FFFFFF';
+                this.ctx.fillText(`Level ${this.currentLevel} Complete!`, centerX, centerY + 80);
+                
+                // Add sparkles around trophy
+                this.drawSparkles(centerX, centerY, scale);
+            }
+            
+            scale += 0.05;
+            if (scale >= 1.2) {
+                clearInterval(animateInterval);
+                // Final trophy with sparkles
+                this.drawFinalCelebration(centerX, centerY);
+            }
+        }, 50);
+    }
+    
+    drawSparkles(centerX, centerY, scale) {
+        const sparkles = ['✨', '⭐', '💫', '🌟'];
+        const radius = 100 * scale;
+        
+        for (let i = 0; i < 8; i++) {
+            const angle = (i * Math.PI * 2) / 8;
+            const x = centerX + Math.cos(angle) * radius;
+            const y = centerY + Math.sin(angle) * radius;
+            
+            this.ctx.font = `${20 * scale}px Arial`;
+            this.ctx.fillStyle = '#FFFFFF';
+            this.ctx.fillText(sparkles[i % sparkles.length], x, y);
+        }
+    }
+    
+    drawFinalCelebration(centerX, centerY) {
+        // Final static display
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        
+        // Dark background
+        this.ctx.fillStyle = 'rgba(0, 0, 0, 0.8)';
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        
+        // Big trophy
+        this.ctx.font = '96px Arial';
+        this.ctx.textAlign = 'center';
+        this.ctx.textBaseline = 'middle';
+        this.ctx.fillStyle = '#FFD700';
+        this.ctx.fillText('🏆', centerX, centerY);
+        
+        // Level complete text
+        this.ctx.font = '28px Arial';
+        this.ctx.fillStyle = '#FFFFFF';
+        this.ctx.fillText(`Level ${this.currentLevel} Complete!`, centerX, centerY + 80);
+        
+        // Draw sparkles
+        this.drawSparkles(centerX, centerY, 1);
+        
+        // Add celebration text
+        this.ctx.font = '20px Arial';
+        this.ctx.fillStyle = '#00FF00';
+        this.ctx.fillText('🎉 Amazing Work! 🎉', centerX, centerY + 120);
+    }
+    
+    showGameCompletionAnimation() {
+        // Special animation for completing all levels
+        setTimeout(() => {
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            
+            // Rainbow background
+            const gradient = this.ctx.createLinearGradient(0, 0, this.canvas.width, this.canvas.height);
+            gradient.addColorStop(0, 'rgba(255, 0, 150, 0.3)');
+            gradient.addColorStop(0.25, 'rgba(255, 200, 0, 0.3)');
+            gradient.addColorStop(0.5, 'rgba(0, 255, 0, 0.3)');
+            gradient.addColorStop(0.75, 'rgba(0, 200, 255, 0.3)');
+            gradient.addColorStop(1, 'rgba(150, 0, 255, 0.3)');
+            
+            this.ctx.fillStyle = gradient;
+            this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+            
+            const centerX = this.canvas.width / 2;
+            const centerY = this.canvas.height / 2;
+            
+            // Multiple trophies and celebration
+            this.ctx.font = '72px Arial';
+            this.ctx.textAlign = 'center';
+            this.ctx.textBaseline = 'middle';
+            this.ctx.fillStyle = '#FFD700';
+            this.ctx.fillText('🏆', centerX, centerY - 60);
+            this.ctx.fillText('🏆', centerX - 80, centerY);
+            this.ctx.fillText('🏆', centerX + 80, centerY);
+            
+            // Game complete text
+            this.ctx.font = 'bold 32px Arial';
+            this.ctx.fillStyle = '#FFFFFF';
+            this.ctx.strokeStyle = '#000000';
+            this.ctx.lineWidth = 2;
+            this.ctx.strokeText('🎊 MAZE MASTER! 🎊', centerX, centerY + 80);
+            this.ctx.fillText('🎊 MAZE MASTER! 🎊', centerX, centerY + 80);
+            
+            // Fireworks effect
+            this.drawFireworks();
+        }, 1000);
+    }
+    
+    drawFireworks() {
+        const fireworks = ['🎆', '🎇', '✨', '💥', '⭐'];
+        for (let i = 0; i < 15; i++) {
+            const x = Math.random() * this.canvas.width;
+            const y = Math.random() * this.canvas.height;
+            const emoji = fireworks[Math.floor(Math.random() * fireworks.length)];
+            
+            this.ctx.font = `${20 + Math.random() * 20}px Arial`;
+            this.ctx.fillStyle = '#FFFFFF';
+            this.ctx.fillText(emoji, x, y);
+        }
+    }
+}
+
 class PersonalityQuiz {
     constructor() {
         this.currentQuestion = 0;
@@ -414,7 +990,8 @@ class PersonalityQuiz {
     }
 }
 
-// Initialize the quiz when the page loads
+// Initialize the quiz and maze game when the page loads
 document.addEventListener('DOMContentLoaded', () => {
     new PersonalityQuiz();
+    new MazeGame();
 });
