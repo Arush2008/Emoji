@@ -662,10 +662,10 @@ class PersonalityQuiz {
                 traits: ["Highly creative and artistic", "Strong intuitive abilities", "Values originality and innovation", "Enjoys exploring new possibilities"],
                 advice: "Channel your creativity into meaningful projects and don't be afraid to share your unique perspective with the world.",
                 celebrities: [
-                    { name: "Steve Jobs", initial: "SJ", description: "Apple Co-founder & Visionary", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Steve_Jobs_Headshot_2010-CROP_%28cropped_2%29.jpg/256px-Steve_Jobs_Headshot_2010-CROP_%28cropped_2%29.jpg", wiki: "https://en.wikipedia.org/wiki/Steve_Jobs" },
-                    { name: "Leonardo da Vinci", initial: "LV", description: "Renaissance Genius", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Leonardo_self.jpg/256px-Leonardo_self.jpg", wiki: "https://en.wikipedia.org/wiki/Leonardo_da_Vinci" },
-                    { name: "Walt Disney", initial: "WD", description: "Animation Pioneer", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Walt_Disney_1946.JPG/256px-Walt_Disney_1946.JPG", wiki: "https://en.wikipedia.org/wiki/Walt_Disney" },
-                    { name: "Frida Kahlo", initial: "FK", description: "Iconic Artist", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Frida_Kahlo%2C_by_Guillermo_Kahlo.jpg/256px-Frida_Kahlo%2C_by_Guillermo_Kahlo.jpg", wiki: "https://en.wikipedia.org/wiki/Frida_Kahlo" }
+                    { name: "Vincent van Gogh", initial: "VG", description: "Post-Impressionist Artist", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project_%28454045%29.jpg/200px-Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project_%28454045%29.jpg", wiki: "https://en.wikipedia.org/wiki/Vincent_van_Gogh" },
+                    { name: "Maya Angelou", initial: "MA", description: "Poet & Civil Rights Activist", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Maya_Angelou_visits_YCP_in_2011.jpg/200px-Maya_Angelou_visits_YCP_in_2011.jpg", wiki: "https://en.wikipedia.org/wiki/Maya_Angelou" },
+                    { name: "David Bowie", initial: "DB", description: "Musical Innovator", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/David-Bowie_Chicago_2002-08-08_photoby_Adam-Bielawski-cropped.jpg/200px-David-Bowie_Chicago_2002-08-08_photoby_Adam-Bielawski-cropped.jpg", wiki: "https://en.wikipedia.org/wiki/David_Bowie" },
+                    { name: "Björk", initial: "BJ", description: "Avant-garde Musician", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Bj%C3%B6rk_at_the_2018_Cannes_Film_Festival.jpg/200px-Bj%C3%B6rk_at_the_2018_Cannes_Film_Festival.jpg", wiki: "https://en.wikipedia.org/wiki/Bj%C3%B6rk" }
                 ]
             },
             logical_adventurer: {
@@ -675,10 +675,10 @@ class PersonalityQuiz {
                 traits: ["Excellent problem-solving skills", "Loves new experiences", "Approaches challenges systematically", "Values both logic and excitement"],
                 advice: "Use your analytical skills to plan your next adventure. Your balanced approach to risk-taking is your superpower.",
                 celebrities: [
-                    { name: "Elon Musk", initial: "EM", description: "Tech Entrepreneur", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Elon_Musk_Royal_Society_%28crop2%29.jpg/256px-Elon_Musk_Royal_Society_%28crop2%29.jpg", wiki: "https://en.wikipedia.org/wiki/Elon_Musk" },
-                    { name: "Bear Grylls", initial: "BG", description: "Adventurer & Survivalist", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Bear_Grylls_2016.jpg/256px-Bear_Grylls_2016.jpg", wiki: "https://en.wikipedia.org/wiki/Bear_Grylls" },
-                    { name: "Richard Branson", initial: "RB", description: "Business Maverick", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Richard_Branson_March_2015_%28cropped%29.jpg/256px-Richard_Branson_March_2015_%28cropped%29.jpg", wiki: "https://en.wikipedia.org/wiki/Richard_Branson" },
-                    { name: "Amelia Earhart", initial: "AE", description: "Aviation Pioneer", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Amelia_Earhart_1937.jpg/256px-Amelia_Earhart_1937.jpg", wiki: "https://en.wikipedia.org/wiki/Amelia_Earhart" }
+                    { name: "Ernest Shackleton", initial: "ES", description: "Antarctic Explorer", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Ernest_Shackleton_before_1909.jpg/200px-Ernest_Shackleton_before_1909.jpg", wiki: "https://en.wikipedia.org/wiki/Ernest_Shackleton" },
+                    { name: "Katherine Johnson", initial: "KJ", description: "NASA Mathematician", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Katherine_Johnson_at_NASA_in_1966.jpg/200px-Katherine_Johnson_at_NASA_in_1966.jpg", wiki: "https://en.wikipedia.org/wiki/Katherine_Johnson" },
+                    { name: "Elon Musk", initial: "EM", description: "Space & Tech Pioneer", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Elon_Musk_Royal_Society_%28crop2%29.jpg/200px-Elon_Musk_Royal_Society_%28crop2%29.jpg", wiki: "https://en.wikipedia.org/wiki/Elon_Musk" },
+                    { name: "Jane Goodall", initial: "JG", description: "Primatologist & Explorer", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Jane_Goodall_2015.jpg/200px-Jane_Goodall_2015.jpg", wiki: "https://en.wikipedia.org/wiki/Jane_Goodall" }
                 ]
             },
             empathetic_collaborator: {
@@ -688,10 +688,10 @@ class PersonalityQuiz {
                 traits: ["Excellent at reading emotions", "Natural team player", "Strong communication skills", "Values harmony and cooperation"],
                 advice: "Your ability to connect with others is rare. Consider roles where you can mentor, lead, or support others in achieving their goals.",
                 celebrities: [
-                    { name: "Oprah Winfrey", initial: "OW", description: "Media Mogul & Philanthropist", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Oprah_in_2014.jpg/256px-Oprah_in_2014.jpg", wiki: "https://en.wikipedia.org/wiki/Oprah_Winfrey" },
-                    { name: "Nelson Mandela", initial: "NM", description: "Peace Leader", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Nelson_Mandela_1994.jpg/256px-Nelson_Mandela_1994.jpg", wiki: "https://en.wikipedia.org/wiki/Nelson_Mandela" },
-                    { name: "Mother Teresa", initial: "MT", description: "Humanitarian", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/MotherTeresa_094.jpg/256px-MotherTeresa_094.jpg", wiki: "https://en.wikipedia.org/wiki/Mother_Teresa" },
-                    { name: "Barack Obama", initial: "BO", description: "Former President", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/President_Barack_Obama.jpg/256px-President_Barack_Obama.jpg", wiki: "https://en.wikipedia.org/wiki/Barack_Obama" }
+                    { name: "Dolly Parton", initial: "DP", description: "Country Legend & Philanthropist", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Dolly_Parton_in_Nashville_cropped.jpg/200px-Dolly_Parton_in_Nashville_cropped.jpg", wiki: "https://en.wikipedia.org/wiki/Dolly_Parton" },
+                    { name: "Fred Rogers", initial: "FR", description: "Children's TV Host", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Fred_Rogers%2C_late_1960s.jpg/200px-Fred_Rogers%2C_late_1960s.jpg", wiki: "https://en.wikipedia.org/wiki/Fred_Rogers" },
+                    { name: "Malala Yousafzai", initial: "MY", description: "Education Activist", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Malala_Yousafzai_2015.jpg/200px-Malala_Yousafzai_2015.jpg", wiki: "https://en.wikipedia.org/wiki/Malala_Yousafzai" },
+                    { name: "Keanu Reeves", initial: "KR", description: "Actor & Humanitarian", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Reuni%C3%A3o_com_o_ator_norte-americano_Keanu_Reeves_%2846806576554%29_%28cropped%29.jpg/200px-Reuni%C3%A3o_com_o_ator_norte-americano_Keanu_Reeves_%2846806576554%29_%28cropped%29.jpg", wiki: "https://en.wikipedia.org/wiki/Keanu_Reeves" }
                 ]
             },
             introverted_thinker: {
@@ -701,10 +701,10 @@ class PersonalityQuiz {
                 traits: ["Excellent analytical abilities", "Values deep, meaningful relationships", "Thinks before acting", "Enjoys intellectual challenges"],
                 advice: "Your thoughtful approach is valuable. Don't underestimate the power of your quiet insights and take time to share your ideas.",
                 celebrities: [
-                    { name: "Albert Einstein", initial: "AE", description: "Theoretical Physicist", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Albert_Einstein_Head.jpg/256px-Albert_Einstein_Head.jpg", wiki: "https://en.wikipedia.org/wiki/Albert_Einstein" },
-                    { name: "Bill Gates", initial: "BG", description: "Microsoft Co-founder", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Bill_Gates_2018.jpg/256px-Bill_Gates_2018.jpg", wiki: "https://en.wikipedia.org/wiki/Bill_Gates" },
-                    { name: "Mark Zuckerberg", initial: "MZ", description: "Meta CEO", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Mark_Zuckerberg_F8_2019_Keynote_%2832830578717%29_%28cropped%29.jpg/256px-Mark_Zuckerberg_F8_2019_Keynote_%2832830578717%29_%28cropped%29.jpg", wiki: "https://en.wikipedia.org/wiki/Mark_Zuckerberg" },
-                    { name: "Stephen Hawking", initial: "SH", description: "Renowned Physicist", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Stephen_Hawking.StarChild.jpg/256px-Stephen_Hawking.StarChild.jpg", wiki: "https://en.wikipedia.org/wiki/Stephen_Hawking" }
+                    { name: "Marie Curie", initial: "MC", description: "Nobel Prize Scientist", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Marie_Curie_c1920.jpg/200px-Marie_Curie_c1920.jpg", wiki: "https://en.wikipedia.org/wiki/Marie_Curie" },
+                    { name: "J.K. Rowling", initial: "JR", description: "Fantasy Author", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/J._K._Rowling_2010.jpg/200px-J._K._Rowling_2010.jpg", wiki: "https://en.wikipedia.org/wiki/J._K._Rowling" },
+                    { name: "Tim Berners-Lee", initial: "TB", description: "Web Inventor", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Sir_Tim_Berners-Lee_%28cropped%29.jpg/200px-Sir_Tim_Berners-Lee_%28cropped%29.jpg", wiki: "https://en.wikipedia.org/wiki/Tim_Berners-Lee" },
+                    { name: "Stephen Hawking", initial: "SH", description: "Theoretical Physicist", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Stephen_Hawking.StarChild.jpg/200px-Stephen_Hawking.StarChild.jpg", wiki: "https://en.wikipedia.org/wiki/Stephen_Hawking" }
                 ]
             },
             extroverted_enthusiast: {
@@ -714,10 +714,10 @@ class PersonalityQuiz {
                 traits: ["Natural networker", "High energy and enthusiasm", "Motivates and inspires others", "Thrives in social environments"],
                 advice: "Your energy is your gift to the world. Use it to bring people together and champion causes you believe in.",
                 celebrities: [
-                    { name: "Ellen DeGeneres", initial: "ED", description: "TV Host & Comedian", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Ellen_DeGeneres_2011.jpg/256px-Ellen_DeGeneres_2011.jpg", wiki: "https://en.wikipedia.org/wiki/Ellen_DeGeneres" },
-                    { name: "Will Smith", initial: "WS", description: "Actor & Entertainer", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/TechCrunch_Disrupt_2019_%2848834434641%29_%28cropped%29.jpg/256px-TechCrunch_Disrupt_2019_%2848834434641%29_%28cropped%29.jpg", wiki: "https://en.wikipedia.org/wiki/Will_Smith" },
-                    { name: "Tony Robbins", initial: "TR", description: "Motivational Speaker", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Tony_Robbins_%2848232230646%29.jpg/256px-Tony_Robbins_%2848232230646%29.jpg", wiki: "https://en.wikipedia.org/wiki/Tony_Robbins" },
-                    { name: "Robin Williams", initial: "RW", description: "Beloved Comedian", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Robin_Williams_Happy_Feet_premiere.jpg/256px-Robin_Williams_Happy_Feet_premiere.jpg", wiki: "https://en.wikipedia.org/wiki/Robin_Williams" }
+                    { name: "Dwayne Johnson", initial: "DJ", description: "Actor & Motivator", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Dwayne_Johnson_2014_%28cropped%29.jpg/200px-Dwayne_Johnson_2014_%28cropped%29.jpg", wiki: "https://en.wikipedia.org/wiki/Dwayne_Johnson" },
+                    { name: "Serena Williams", initial: "SW", description: "Tennis Champion", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Serena_Williams_at_2013_US_Open.jpg/200px-Serena_Williams_at_2013_US_Open.jpg", wiki: "https://en.wikipedia.org/wiki/Serena_Williams" },
+                    { name: "Jimmy Fallon", initial: "JF", description: "TV Host & Comedian", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Jimmy_Fallon_2012_Shankbone.JPG/200px-Jimmy_Fallon_2012_Shankbone.JPG", wiki: "https://en.wikipedia.org/wiki/Jimmy_Fallon" },
+                    { name: "Lady Gaga", initial: "LG", description: "Pop Icon & Activist", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Lady_Gaga_at_Joe_Biden%27s_inauguration_%28cropped_2%29.jpg/200px-Lady_Gaga_at_Joe_Biden%27s_inauguration_%28cropped_2%29.jpg", wiki: "https://en.wikipedia.org/wiki/Lady_Gaga" }
                 ]
             },
             balanced_harmonizer: {
@@ -727,10 +727,10 @@ class PersonalityQuiz {
                 traits: ["Adaptable to various situations", "Good balance of logic and emotion", "Brings people together", "Stable and reliable"],
                 advice: "Your versatility is your strength. You can succeed in many different areas - don't be afraid to explore various paths.",
                 celebrities: [
-                    { name: "Michelle Obama", initial: "MO", description: "Former First Lady", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Michelle_Obama_2013_official_portrait.jpg/256px-Michelle_Obama_2013_official_portrait.jpg", wiki: "https://en.wikipedia.org/wiki/Michelle_Obama" },
-                    { name: "Warren Buffett", initial: "WB", description: "Investor & Philanthropist", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Warren_Buffett_KU_Visit.jpg/256px-Warren_Buffett_KU_Visit.jpg", wiki: "https://en.wikipedia.org/wiki/Warren_Buffett" },
-                    { name: "Tom Hanks", initial: "TH", description: "Beloved Actor", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Tom_Hanks_TIFF_2019.jpg/256px-Tom_Hanks_TIFF_2019.jpg", wiki: "https://en.wikipedia.org/wiki/Tom_Hanks" },
-                    { name: "Serena Williams", initial: "SW", description: "Tennis Champion", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Serena_Williams_at_2013_US_Open.jpg/256px-Serena_Williams_at_2013_US_Open.jpg", wiki: "https://en.wikipedia.org/wiki/Serena_Williams" }
+                    { name: "Leonardo da Vinci", initial: "LV", description: "Renaissance Polymath", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Leonardo_self.jpg/200px-Leonardo_self.jpg", wiki: "https://en.wikipedia.org/wiki/Leonardo_da_Vinci" },
+                    { name: "Oprah Winfrey", initial: "OW", description: "Media Mogul & Philanthropist", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Oprah_in_2014.jpg/200px-Oprah_in_2014.jpg", wiki: "https://en.wikipedia.org/wiki/Oprah_Winfrey" },
+                    { name: "Benjamin Franklin", initial: "BF", description: "Founding Father & Inventor", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Benjamin_Franklin_by_Joseph_Duplessis_1778.jpg/200px-Benjamin_Franklin_by_Joseph_Duplessis_1778.jpg", wiki: "https://en.wikipedia.org/wiki/Benjamin_Franklin" },
+                    { name: "Michelle Obama", initial: "MO", description: "Former First Lady & Author", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Michelle_Obama_2013_official_portrait.jpg/200px-Michelle_Obama_2013_official_portrait.jpg", wiki: "https://en.wikipedia.org/wiki/Michelle_Obama" }
                 ]
             }
         };
@@ -922,7 +922,10 @@ class PersonalityQuiz {
             
             celebrityCard.innerHTML = `
                 <div class="celebrity-image">
-                    <img src="${celebrity.image}" alt="${celebrity.name}" onerror="this.style.display='none'; this.parentNode.innerHTML='${celebrity.initial}';">
+                    <img src="${celebrity.image}" alt="${celebrity.name}" 
+                         onerror="this.style.display='none'; this.parentNode.innerHTML='<div style=\\'display: flex; align-items: center; justify-content: center; width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, #059669, #1e40af); color: white; font-size: 2rem; font-weight: bold;\\'>${celebrity.initial}</div>';"
+                         onload="this.style.opacity='1';" 
+                         style="opacity: 0; transition: opacity 0.3s ease;">
                 </div>
                 <div class="celebrity-name">${celebrity.name}</div>
                 <div class="celebrity-description">${celebrity.description}</div>
